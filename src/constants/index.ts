@@ -1,4 +1,3 @@
-// Default values and configuration constants
 export const DEFAULT_VALUES = {
   GRID_SIZE: 15,
   START_PRICE: 1,

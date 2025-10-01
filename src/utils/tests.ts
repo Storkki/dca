@@ -7,7 +7,6 @@ export type TestResult = {
   details?: string;
 };
 
-// Self-tests for the calculator
 export function runSelfTests(): TestResult[] {
   const results: TestResult[] = [];
 

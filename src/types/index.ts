@@ -1,4 +1,3 @@
-// Type definitions for the grid calculator
 export type AllocationMode = "equal" | "progressive";
 
 export type DecimalSeparator = "." | ",";

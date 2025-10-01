@@ -1,6 +1,5 @@
 import { Row, DecimalSeparator } from "../types";
 
-// Formatting utilities
 export function toFixedWithSep(
   n: number,
   decimals: number,
@@ -48,7 +47,6 @@ function fallbackCopy(text: string): void {
   document.body.removeChild(ta);
 }
 
-// CSV utilities
 export function generateCSV(
   rows: Row[],
   decimalSep: DecimalSeparator,

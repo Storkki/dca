@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// Reusable UI components
 export function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
@@ -31,7 +30,6 @@ export function NumberInput({
     const val = e.target.value;
     setInputValue(val);
 
-    // Allow empty string temporarily
     if (val === '' || val === '-') {
       return;
     }
@@ -43,19 +41,16 @@ export function NumberInput({
   };
 
   const handleBlur = () => {
-    // On blur, ensure we have a valid number
     const numVal = Number(inputValue);
     if (isNaN(numVal) || inputValue === '' || inputValue === '-') {
       const defaultVal = min !== undefined ? min : 0;
       setValue(defaultVal);
       setInputValue(defaultVal.toString());
     } else {
-      // Update to match the actual value (in case of formatting differences)
       setInputValue(value.toString());
     }
   };
 
-  // Sync with external value changes
   React.useEffect(() => {
     setInputValue(value.toString());
   }, [value]);

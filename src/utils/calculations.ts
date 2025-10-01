@@ -1,6 +1,5 @@
 import { Row, ComputeRowsParams, Totals } from '../types';
 
-// Core calculation functions
 export function computeRows({
   gridSize,
   startPrice,
@@ -17,21 +16,17 @@ export function computeRows({
   const m = Math.max(0.0001, Number(stepMultiplier) || 1);
   const t = Math.max(0, Number(tpPct) || 0) / 100;
 
-  // Prices: descending geometric steps from startPrice
   const prices: number[] = Array.from({ length: N }, (_, i) => P0 * Math.pow(1 - s, i));
 
-  // USD allocations per order
   let usdAlloc: number[] = [];
   if (allocation === "equal" || Math.abs(m - 1) < 1e-9) {
     usdAlloc = new Array(N).fill(C / N);
   } else {
-    // Progressive sizing (geometric series): a, a*m, ..., a*m^{N-1} sums to C -> a = C*(m-1)/(m^N - 1)
     const denom = Math.pow(m, N) - 1;
     const a = denom === 0 ? C / N : (C * (m - 1)) / denom;
     usdAlloc = Array.from({ length: N }, (_, i) => a * Math.pow(m, i));
   }
 
-  // Build rows
   let cumTokens = 0;
   let cumUsd = 0;
   const result = prices.map((price, idx) => {
@@ -41,8 +36,8 @@ export function computeRows({
     cumUsd += usd;
     const avgPrice = cumTokens > 0 ? cumUsd / cumTokens : 0;
     const tpPrice = avgPrice * (1 + t);
-    // Calculate profit for this step: tokens bought at current price, sold at TP price
     const stepProfit = tokens * (tpPrice - price);
+
     return {
       order: idx + 1,
       price,
