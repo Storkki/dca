@@ -1,4 +1,4 @@
-# Grid Averaging Calculator
+# Grid Averaging Calculator!
 
 A React-based grid averaging calculator for DCA (Dollar Cost Averaging) strategies. This tool helps you create a grid of buy orders to average down your entry price.
 
